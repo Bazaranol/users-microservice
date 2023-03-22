@@ -23,7 +23,8 @@ class ClientController extends Controller
             'data' => [
                 'id' => $clientData->id,
                 'firstName' => $clientData->firstName,
-                'lastName' => $clientData->lastName
+                'lastName' => $clientData->lastName,
+                'isBlocked' => $clientData->isBlocked,
             ]
         ]);
     }
@@ -34,14 +35,15 @@ class ClientController extends Controller
             'lastName' => 'required',
         ]);
 
-        Client::insert([
+        $id = Client::insertGetId([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
             'isBlocked' => 0,
         ]);
 
         return response()->json([
-            'status' => 'success'
+            'status' => 'success',
+            'id' => $id,
         ]);
     }
 

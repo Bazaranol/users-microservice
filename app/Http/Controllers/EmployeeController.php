@@ -37,14 +37,15 @@ class EmployeeController extends Controller
             'lastName' => 'required',
         ]);
 
-        Employee::insert([
+        $id = Employee::insertGetId([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
             'isBlocked' => 0,
         ]);
 
         return response()->json([
-            'status' => 'success'
+            'status' => 'success',
+            'id' => $id,
         ]);
     }
 
