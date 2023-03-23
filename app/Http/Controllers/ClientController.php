@@ -19,13 +19,10 @@ class ClientController extends Controller
     public function getClient(Request $request){
         $clientData = Client::where('id', $request->id)->first();
         return response()->json([
-            'status' => 'success',
-            'data' => [
-                'id' => $clientData->id,
-                'firstName' => $clientData->firstName,
-                'lastName' => $clientData->lastName,
-                'isBlocked' => $clientData->isBlocked,
-            ]
+            'id' => $clientData->id,
+            'firstName' => $clientData->firstName,
+            'lastName' => $clientData->lastName,
+            'isBlocked' => $clientData->isBlocked,
         ]);
     }
 
