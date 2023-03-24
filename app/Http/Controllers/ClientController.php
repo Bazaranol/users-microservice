@@ -39,7 +39,6 @@ class ClientController extends Controller
         ]);
 
         return response()->json([
-            'status' => 'success',
             'id' => $id,
         ]);
     }

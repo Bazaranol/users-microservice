@@ -20,12 +20,7 @@ class EmployeeController extends Controller
 
     public function getEmployee(Request $request){
         $employeeData = Employee::where('id', $request->id)->first();
-        return response()->json([
-            'id' => $employeeData->id,
-            'firstName' => $employeeData->firstName,
-            'lastName' => $employeeData->lastName,
-            'isBlocked'=> $employeeData->isBlocked,
-        ]);
+        return response()->json($employeeData);
     }
 
     public function createEmployee(Request $request){
@@ -41,7 +36,6 @@ class EmployeeController extends Controller
         ]);
 
         return response()->json([
-            'status' => 'success',
             'id' => $id,
         ]);
     }
