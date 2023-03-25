@@ -24,3 +24,7 @@ Route::controller(\App\Http\Controllers\EmployeeController::class)->group(functi
     Route::post('employees/{id}/delete', 'deleteEmployee')->where('id', '[0-9]+');
     Route::post('employees/{id}/block', 'blockEmployee')->where('id', '[0-9]+');
 });
+
+Route::controller(\App\Http\Controllers\UserController::class)->group(function() {
+    Route::post('exists', 'exists');
+});

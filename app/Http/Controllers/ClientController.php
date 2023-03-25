@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
+    private $stringGenerator;
+
+    function __construct() {
+        $this->stringGenerator = new Helpers\StringGenerator();
+    }
+
     public function getClients(){
         $clientsData = Client::all()->toArray();
         return json_encode($clientsData, JSON_UNESCAPED_UNICODE);
@@ -32,9 +39,14 @@ class ClientController extends Controller
             'lastName' => 'required',
         ]);
 
+        $login = $this->stringGenerator->generateRandomString(12);
+        $password = $this->stringGenerator->generateRandomString(12);
+
         $id = Client::insertGetId([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
+            'login' => $login,
+            'password' => $password,
             'isBlocked' => 0,
         ]);
 

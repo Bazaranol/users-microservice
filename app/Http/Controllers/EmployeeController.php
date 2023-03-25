@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
+    private $stringGenerator;
+
+    function __construct() {
+        $this->stringGenerator = new Helpers\StringGenerator();
+    }
+
     public function getEmployees(){
         $employeesData = Employee::all()->toArray();
         return json_encode($employeesData, JSON_UNESCAPED_UNICODE);
@@ -29,9 +36,14 @@ class EmployeeController extends Controller
             'lastName' => 'required',
         ]);
 
+        $login = $this->stringGenerator->generateRandomString(12);
+        $password = $this->stringGenerator->generateRandomString(12);
+
         $id = Employee::insertGetId([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
+            'login' => $login,
+            'password' => $password,
             'isBlocked' => 0,
         ]);
 

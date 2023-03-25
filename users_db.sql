@@ -23,6 +23,9 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+DROP TABLE IF EXISTS `clients`;
+DROP TABLE IF EXISTS `employees`;
+
 --
 -- Структура таблицы `clients`
 --
@@ -31,6 +34,8 @@ CREATE TABLE `clients` (
   `id` int(255) NOT NULL,
   `firstName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lastName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `login` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isBlocked` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -38,8 +43,10 @@ CREATE TABLE `clients` (
 -- Дамп данных таблицы `clients`
 --
 
-INSERT INTO `clients` (`id`, `firstName`, `lastName`, `isBlocked`) VALUES
-(2, 'Me', 'Mine', 0);
+INSERT INTO `clients` (`id`, `firstName`, `lastName`, `login`, `password`, `isBlocked`) VALUES
+(2, 'Me', 'Mine', 'admin', 'admin', 0),
+(3, 'Client1name', 'Client1lastname', 'admin1', 'admin1', 0),
+(4, 'Client2name', 'Client2lastname', 'admin2', 'admin2', 0);
 
 -- --------------------------------------------------------
 
@@ -51,6 +58,8 @@ CREATE TABLE `employees` (
   `id` int(255) NOT NULL,
   `firstName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lastName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `login` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isBlocked` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -58,12 +67,12 @@ CREATE TABLE `employees` (
 -- Дамп данных таблицы `employees`
 --
 
-INSERT INTO `employees` (`id`, `firstName`, `lastName`, `isBlocked`) VALUES
-(2, 'Ned', 'Tom', 0),
-(3, 'toto', 'asdasd', 1),
-(4, 'mona', 'mona', 0),
-(5, 'test', 'test', 0),
-(6, 'test2', 'test2', 0);
+INSERT INTO `employees` (`id`, `firstName`, `lastName`, `login`, `password`, `isBlocked`) VALUES
+(2, 'Ned', 'Tom', 'admin1', 'admin1', 0),
+(3, 'toto', 'asdasd', 'admin2', 'admin2', 0),
+(4, 'mona', 'mona', 'admin3', 'admin3', 0),
+(5, 'test', 'test', 'admin4', 'admin4', 0),
+(6, 'test2', 'test2', 'admin5', 'admin5', 0);
 
 --
 -- Индексы сохранённых таблиц

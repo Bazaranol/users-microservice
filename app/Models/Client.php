@@ -14,6 +14,8 @@ class Client extends Model
     protected $fillable = [
         'firstName',
         'lastName',
+        'login',
+        'password',
         'isBlocked'
     ];
 }
